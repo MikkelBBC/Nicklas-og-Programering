@@ -26,12 +26,14 @@ function preload(){
  _11 = loadImage("Billder/11.png");
 
  billeder = [_0,_1,_2,_3,_4,_5,_6,_7,_8,_9,_10,_11];
- vælgBillede = floor(random(billeder.lenght));
+ vælgBillede = floor(random(0, 11));
 }
 
 function setup() {
     createCanvas(400, 400);
-}
+  
+
+  }
   
   function draw() {
     background(30);

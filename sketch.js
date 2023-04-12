@@ -22,6 +22,10 @@ function preload() {
   for (let i = 0; i < 12; i++) {
     billeder[i] = loadImage("Billder/" + i + ".png");
   }
+//  for (let i = 0; i < 12; i++) {
+//    captions[i] = loadStrings("Captions/" + i + ".txt");
+//  }
+
 
  vælgCaption = floor(random(0, 11));
  vælgBillede = floor(random(0, 11));
@@ -48,6 +52,7 @@ function setup() {
     image(billeder[vælgBillede],50,100,350,300);
     textSize(18);
     textFont("Trebuchet MS");
+  //text(random[vælgCaptions], 40, 15, 350);
     text(captions[vælgCaption], 40, 15, 350);
     
 }

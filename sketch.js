@@ -1,9 +1,9 @@
 
 let billeder = [];
-let captions = ["caption1", 
-                "caption2", 
-                "caption3", 
-                "caption4", 
+let captions = ["Why so sad?", 
+                "Can i eat this?", 
+                "Whos your daddy?", 
+                "When u are late for school", 
                 "caption5", 
                 "caption6", 
                 "caption7", 

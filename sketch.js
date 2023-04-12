@@ -4,14 +4,14 @@ let captions = ["Why so sad?",
                 "Can i eat this?", 
                 "Whos your daddy?", 
                 "When u are late for school", 
+                "caption4", 
                 "caption5", 
                 "caption6", 
                 "caption7", 
                 "caption8", 
                 "caption9", 
                 "caption10", 
-                "caption11", 
-                "caption12"];
+                "caption11"];
 let vælgBillede;
 let vælgCaption;
 let nyMeme;
@@ -62,12 +62,25 @@ function Restart() {
   vælgBillede = floor(random(0, 11));
 }
 
+ // give current picture and caption a like
 function Like() {
-  console.log("Like");
-  // give current picture and caption a like
+  
+  
+    console.log("Like");
+    console.log("Billede nr. = "+vælgBillede);
+    console.log("Captions nr. = "+vælgCaption);
 }
 
-function Dislike() {
-  console.log("Dislike");
   // give current picture and caption a dislike
+function Dislike() {
+  
+
+  console.log("Dislike");
+  console.log("Billede nr. = "+vælgBillede);
+  console.log("Captions nr. = "+vælgCaption);
 }
+
+
+// Vi kan lave hvor man selv skriver skrift ind i et felt og så gemmer den det som en caption
+
+

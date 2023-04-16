@@ -9,9 +9,28 @@ let captions = ["Why so sad?",
                 "Me when I talk to girls", 
                 "My honest reaction to LGBTQ", 
                 "When you forget to fluush the toilet ", 
-                "When you accidentally sends dick pick to uncle", 
+                "When you accidentally sends a dick pick to uncle", 
                 "When you are not a white male at think you can vote", 
-                "Pov the voice inside my head"];
+                "Pov the voice inside my head",
+                "Mads when you don't do your homework",
+                "when the educators have forgotten to close the door to the kindergarten",
+                "When your homie looks ekstra thick",
+                "POV it is monday",
+                "Me after I have killed 17 children and comited war crimes",
+                "Have you done your homework?",
+                "When mom come home and you have not done the dishes",
+                "TAKE OF YOUR PANTS",
+                "POV my sleep paralysis when i trying sleep",
+                "when you want a girlfriend but you go to htx ",
+                "POV you are me",
+                "Me trying to understand the LGBTQ girl with purple hair",
+                "When i come in trouble for stealing the trans girls testosterone",
+                "sir you can't just rape people, the bomb up my ass",
+                "When you plug the toilet intentionally",
+                "When you parents say they love you but it is the april first",
+                "When your girlfreind wakes you up but you don't have a girlfreind",
+                "Boy: mom I want to be a doctor, the stage 4 cancer in his brain",
+              ];
 let vælgBillede;
 let vælgCaption;
 let nyMeme;
@@ -20,13 +39,13 @@ let dislike;
 
 
 function preload() {
-  for (let i = 0; i < 12; i++) {
+  for (let i = 0; i < 30; i++) {
     billeder[i] = loadImage("Billder/" + i + ".png");
     billeder[i].resize(400, 400);
     // resize, vi gerne have billedet fylder hele skærmen for layout
   }
-  vælgCaption = floor(random(0, 11));
-  vælgBillede = floor(random(0, 11));
+  vælgCaption = floor(random(0, 30));
+  vælgBillede = floor(random(0, 30));
 }
 
 
@@ -68,8 +87,8 @@ function setup() {
 }
 
 function Restart() {
-  vælgCaption = floor(random(0, 11));
-  vælgBillede = floor(random(0, 11));
+  vælgCaption = floor(random(0, 30));
+  vælgBillede = floor(random(0, 30));
 }
 
  // give current picture and caption a like

@@ -31,12 +31,46 @@ let captions = ["Why so sad?",
                 "When your girlfreind wakes you up but you don't have a girlfreind",
                 "Boy: mom I want to be a doctor, the stage 4 cancer in his brain",
               ];
-let vælgBillede;
+let vælgBillede; 
 let vælgCaption;
 let nyMeme;
 let like;
 let dislike;
-
+let vælgCaptionButtom;
+let bottomKnap;  
+let bottomKnapAktivation = false;
+let bottomtext = [
+  "                       XD", 
+"                   I hate myself", 
+"                   HAHAAHAHAHH!!!!", 
+"Sucide is the only option", 
+"I am dead inside", 
+"It's warcrime time", 
+"Welp Africa is no more", 
+"Maybe hitler wasn't a bad person", 
+"I am going to jail", 
+"That's a certified HTX moment", 
+"The bomb up your ass", 
+"That's really how i feel",
+"But it's your mother doing",
+"Ohhh shit the cops are coming",
+"It is rape time",
+"                 RUN!!!!!!",
+"It is time for revenge",
+"Say hello to my little freind",
+"The voices inside my head",
+"You don't have the rights to vote",
+"Daddy?",
+"But dad is behind you",
+"23",
+"24",
+"25",
+"26",
+"27",
+"28",
+"29",
+"30",
+];
 
 function preload() {
   for (let i = 0; i < 30; i++) {
@@ -46,6 +80,7 @@ function preload() {
   }
   vælgCaption = floor(random(0, 30));
   vælgBillede = floor(random(0, 30));
+  vælgCaptionButtom = floor(random(0, 30));
 }
 
 
@@ -57,8 +92,12 @@ function setup() {
     nyMeme.size(100, 40);
     nyMeme.mousePressed(Restart);
 
+    bottomKnap = createButton("Bottom text");
+    bottomKnap.style('font-size', '16px');
+    bottomKnap.position(120, 420);
+    bottomKnap.size(100, 40);
+    bottomKnap.mousePressed(Aktivation);
     
-
     like = createButton("Like");
     like.style('font-size', '17px');
     like.style('background-color', 'rgb(0, 250, 0)');
@@ -82,13 +121,28 @@ function setup() {
     textFont("Impact Light");
   //text(random[vælgCaptions], 40, 15, 350);
     text(captions[vælgCaption], 40, 15, 350);
+    if (bottomKnapAktivation == true) {
+      text(bottomtext[vælgCaptionButtom], 40, 330, 350);
+    }
     fill(255,0,0);
   
 }
 
+
+function Aktivation(){
+
+  if (bottomKnapAktivation == false) {
+    bottomKnapAktivation = true;
+    bottomKnap.style('background-color', 'rgb(0, 0, 255)');
+  } else if(bottomKnapAktivation == true){
+    bottomKnap.style('background-color', 'rgb(255, 255, 255)');
+    bottomKnapAktivation = false;
+  }
+}
 function Restart() {
   vælgCaption = floor(random(0, 30));
   vælgBillede = floor(random(0, 30));
+  vælgCaptionButtom = floor(random(0, 30));
 }
 
  // give current picture and caption a like

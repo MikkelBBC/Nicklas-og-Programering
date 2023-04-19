@@ -1,5 +1,6 @@
 
 let billeder = [];
+let emoji = [];
 let captions = ["Why so sad?", 
                 "Can i eat this?", 
                 "Whos your daddy?", 
@@ -43,8 +44,7 @@ let bottomKnapAktivation = false;
 let emojiKnap;
 let vælgEmoji;
 let emojiAktivation = false;
-let bottomtext = [
-  "                       XD", 
+let bottomtext = ["                       XD", 
 "                   I hate myself", 
 "                   HAHAAHAHAHH!!!!", 
 "Sucide is the only option", 
@@ -76,8 +76,8 @@ let bottomtext = [
 "BOTTOM TEXT",
 ];
 let gemMeme;
-let thumbsUp;
-let thumbsDown;
+let deepfry;
+let emojiStop = true;
 
 function preload() {
   for (let i = 0; i < 30; i++) {
@@ -85,6 +85,14 @@ function preload() {
     billeder[i].resize(400, 400);
     // resize, vi gerne have billedet fylder hele skærmen for layout
   }
+
+  for (let e = 0; e < 19; e++) {
+    emoji[e] = loadImage("Emoji/" + "E" + e + ".png");
+    // resize, vi gerne have billedet fylder hele skærmen for layout
+  }
+  
+  
+  vælgEmoji = floor(random(0, 19));
   vælgCaption = floor(random(0, 30));
   vælgBillede = floor(random(0, 30));
   vælgCaptionButtom = floor(random(0, 30));
@@ -136,13 +144,13 @@ function setup() {
       opretData();
       saveJSON(data, "MemeGoBRRRRR.json");
     });
-    
-    thumbsUp = createImg("Billder/ThumbsUp.png");
-    thumbsUp.position(100, 100);
 
-    thumbsDown = createImg("Billder/ThumbsDown.png");
-    thumbsDown.position(100, 150);
-    thumbsDown.size(100, 40);
+    deepfry = createButton("Deepfry");
+    deepfry.style('font-size', '16px');
+    deepfry.style('background-color', 'rgb(70, 229, 166)');
+    deepfry.position(220, 460);
+    deepfry.size(100, 40);
+    deepfry.mousePressed(Deepfry);
 
   }
 
@@ -156,12 +164,25 @@ function setup() {
     if (bottomKnapAktivation == true) {
       text(bottomtext[vælgCaptionButtom], 40, 330, 350);
     }
+    EmojiFunktion();
+
+
+
     fill(255,0,0);
   
     
     
 }
 
+
+function EmojiFunktion() {
+
+  if (emojiAktivation == true) {
+    image(emoji[vælgEmoji],random(10, 390) , random(100, 300), 50, 50);
+
+  }
+  
+}
 
 function Aktivation(){
 
@@ -179,7 +200,7 @@ function AktivationEmoji(){
   if (emojiAktivation == false) {
     emojiAktivation = true;
     emojiKnap.style('background-color', 'rgb(0, 0, 255)');
-  } else if(bottomKnapAktivation == true){
+  } else if(emojiAktivation == true){
     emojiKnap.style('background-color', 'rgb(255, 255, 255)');
     emojiAktivation = false;
   }
@@ -189,6 +210,7 @@ function Restart() {
   vælgCaption = floor(random(0, 30));
   vælgBillede = floor(random(0, 30));
   vælgCaptionButtom = floor(random(0, 30));
+  vælgEmoji = floor(random(0, 19));
 }
 
  // give current picture and caption a like and show thumbs up
@@ -219,6 +241,16 @@ function opretData() {
   console.log(data);
 }
 
+function Deepfry(){
+
+  
+  // downscale then upscale the image to create deepfry effect 
+  // https://www.youtube.com/watch?v=QfNvhPx5Px8
+
+  // kig på hvad mikkel har lavet med bottom text
+  
+  
+}
 
 // Vi kan lave hvor man selv skriver skrift ind i et felt og så gemmer den det som en caption
 // Deepfry knap

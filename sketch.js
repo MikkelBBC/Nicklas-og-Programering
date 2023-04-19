@@ -76,7 +76,8 @@ let bottomtext = [
 "BOTTOM TEXT",
 ];
 let gemMeme;
-
+let thumbsUp;
+let thumbsDown;
 
 function preload() {
   for (let i = 0; i < 30; i++) {
@@ -87,6 +88,8 @@ function preload() {
   vælgCaption = floor(random(0, 30));
   vælgBillede = floor(random(0, 30));
   vælgCaptionButtom = floor(random(0, 30));
+  
+
 }
 
 
@@ -134,6 +137,13 @@ function setup() {
       saveJSON(data, "MemeGoBRRRRR.json");
     });
     
+    thumbsUp = createImg("Billder/ThumbsUp.png");
+    thumbsUp.position(100, 100);
+
+    thumbsDown = createImg("Billder/ThumbsDown.png");
+    thumbsDown.position(100, 150);
+    thumbsDown.size(100, 40);
+
   }
 
   function draw() {
@@ -142,13 +152,14 @@ function setup() {
     image(billeder[vælgBillede],0,0,400,400);
     textSize(30);
     textFont("Impact Light");
-  //text(random[vælgCaptions], 40, 15, 350);
     text(captions[vælgCaption], 40, 15, 350);
     if (bottomKnapAktivation == true) {
       text(bottomtext[vælgCaptionButtom], 40, 330, 350);
     }
     fill(255,0,0);
   
+    
+    
 }
 
 
@@ -184,13 +195,15 @@ function Restart() {
 function Like() {
   
   
-    console.log("Like");
-    console.log("Billede nr. = "+vælgBillede);
-    console.log("Captions nr. = "+vælgCaption);
+  
+  console.log("Like");
+  console.log("Billede nr. = "+vælgBillede);
+  console.log("Captions nr. = "+vælgCaption);
 }
 
   // give current picture and caption a dislike and show thumbs up
 function Dislike() {
+  
   
 
   console.log("Dislike");

@@ -44,6 +44,7 @@ let bottomKnapAktivation = false;
 let emojiKnap;
 let vælgEmoji;
 let emojiAktivation = false;
+let flereEmojis = true;
 let bottomtext = ["                       XD", 
 "                   I hate myself", 
 "                   HAHAAHAHAHH!!!!", 
@@ -170,7 +171,7 @@ function setup() {
 
     fill(255,0,0);
   
-    
+    noLoop();
     
 }
 
@@ -180,12 +181,15 @@ function EmojiFunktion() {
     
   
   if (emojiAktivation == true) {
-    for (let å = 0; å < random(1, 5); å++) {
+    if (flereEmojis == true) {
+      for (let å = 0; å < random(1, 5); å++) {
       
-      image(emoji[vælgEmoji],random(10, 390) , random(100, 300), 50, 50);
+        image(emoji[vælgEmoji],random(10, 390) , random(100, 300), 50, 50);
+      }
     }
     
-    emojiAktivation = false;
+    
+    flereEmojis = false;
 
   }
   
@@ -218,6 +222,8 @@ function Restart() {
   vælgBillede = floor(random(0, 30));
   vælgCaptionButtom = floor(random(0, 30));
   vælgEmoji = floor(random(0, 19));
+  flereEmojis = true;
+  loop();
 }
 
  // give current picture and caption a like and show thumbs up

@@ -15,7 +15,7 @@ let captions = ["Why so sad?",
                 "Mads when you don't do your homework",
                 "When the educators have forgotten to close the door to the kindergarten",
                 "When your homie looks ekstra thick",
-                "POV it's monday",
+                "POV: it's monday",
                 "Me after I have killed 17 children and committed war crimes",
                 "Have you done your homework?",
                 "When mom comes home and you haven't done the dishes",
@@ -30,6 +30,7 @@ let captions = ["Why so sad?",
                 "When you parents say they love you but it's april first",
                 "When your girlfreind wakes you up but you don't have a girlfreind",
                 "Boy: mom I want to be a doctor, the stage 4 cancer in his brain",
+                "Teacher: Today we're going to finger paint",
               ];
 let vælgBillede; 
 let vælgCaption;
@@ -39,6 +40,9 @@ let dislike;
 let vælgCaptionButtom;
 let bottomKnap;  
 let bottomKnapAktivation = false;
+let emojiKnap;
+let vælgEmoji;
+let emojiAktivation = false;
 let bottomtext = [
   "                       XD", 
 "                   I hate myself", 
@@ -62,15 +66,17 @@ let bottomtext = [
 "You don't have the rights to vote",
 "Daddy?",
 "But dad is behind you",
-"23",
-"24",
-"25",
-"26",
-"27",
-"28",
-"29",
-"30",
+"Just shut the fuck up",
+"I just want to lay down and cry",
+"Call 911",
+"Welp this is a lot of bullshit",
+"Yes I am a racist",
+"Next stop AUSWITCH",
+"IT JUST A PRANK BRO",
+"BOTTOM TEXT",
 ];
+let gemMeme;
+
 
 function preload() {
   for (let i = 0; i < 30; i++) {
@@ -86,8 +92,8 @@ function preload() {
 
 function setup() {
     createCanvas(400, 400);
-    nyMeme = createButton("Ny Meme");
-    nyMeme.style('font-size', '17px');
+    nyMeme = createButton("New Meme");
+    nyMeme.style('font-size', '16px');
     nyMeme.position(20, 420);
     nyMeme.size(100, 40);
     nyMeme.mousePressed(Restart);
@@ -99,18 +105,35 @@ function setup() {
     bottomKnap.mousePressed(Aktivation);
     
     like = createButton("Like");
-    like.style('font-size', '17px');
+    like.style('font-size', '16px');
     like.style('background-color', 'rgb(0, 250, 0)');
     like.position(220, 420);
     like.size(100, 40);
     like.mousePressed(Like);
     
     dislike = createButton("Dislike");
-    dislike.style('font-size', '17px');
+    dislike.style('font-size', '16px');
     dislike.style('background-color', 'rgb(255, 0, 0)');
     dislike.position(320, 420);
     dislike.size(100, 40);
     dislike.mousePressed(Dislike);
+
+    emojiKnap = createButton("Emoji");
+    emojiKnap.style('font-size', '16px');
+    emojiKnap.position(120, 460);
+    emojiKnap.size(100, 40);
+    emojiKnap.mousePressed(AktivationEmoji);
+    
+    gemMeme = createButton("Save Meme");
+    gemMeme.style('font-size', '16px');
+    gemMeme.style('background-color', 'rgb(255, 255, 0)');
+    gemMeme.position(20, 460);
+    gemMeme.size(100, 40);
+    gemMeme.mousePressed(() => {
+      opretData();
+      saveJSON(data, "MemeGoBRRRRR.json");
+    });
+    
   }
 
   function draw() {
@@ -139,13 +162,25 @@ function Aktivation(){
     bottomKnapAktivation = false;
   }
 }
+
+function AktivationEmoji(){
+
+  if (emojiAktivation == false) {
+    emojiAktivation = true;
+    emojiKnap.style('background-color', 'rgb(0, 0, 255)');
+  } else if(bottomKnapAktivation == true){
+    emojiKnap.style('background-color', 'rgb(255, 255, 255)');
+    emojiAktivation = false;
+  }
+}
+
 function Restart() {
   vælgCaption = floor(random(0, 30));
   vælgBillede = floor(random(0, 30));
   vælgCaptionButtom = floor(random(0, 30));
 }
 
- // give current picture and caption a like
+ // give current picture and caption a like and show thumbs up
 function Like() {
   
   
@@ -154,7 +189,7 @@ function Like() {
     console.log("Captions nr. = "+vælgCaption);
 }
 
-  // give current picture and caption a dislike
+  // give current picture and caption a dislike and show thumbs up
 function Dislike() {
   
 
@@ -162,8 +197,15 @@ function Dislike() {
   console.log("Billede nr. = "+vælgBillede);
   console.log("Captions nr. = "+vælgCaption);
 }
+// gemmer dataen i en json fil så man kan gemme sine memes
+function opretData() {
+  saveCanvas("MemeNavn", "png");
+  data = '{Input: "memename"}';
+  data = JSON.parse(data);
+  data.Input= memename.value();
+  console.log(data);
+}
 
 
 // Vi kan lave hvor man selv skriver skrift ind i et felt og så gemmer den det som en caption
-
-
+// Deepfry knap

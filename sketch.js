@@ -177,8 +177,15 @@ function setup() {
 
 function EmojiFunktion() {
 
+    
+  
   if (emojiAktivation == true) {
-    image(emoji[vælgEmoji],random(10, 390) , random(100, 300), 50, 50);
+    for (let å = 0; å < random(1, 5); å++) {
+      
+      image(emoji[vælgEmoji],random(10, 390) , random(100, 300), 50, 50);
+    }
+    
+    emojiAktivation = false;
 
   }
   

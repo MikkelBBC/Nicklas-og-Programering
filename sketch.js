@@ -1,6 +1,7 @@
 
 let billeder = [];
 let emoji = [];
+let sounds = [];
 let captions = ["Why so sad?", 
                 "Can i eat this?", 
                 "Whos your daddy?", 
@@ -35,6 +36,7 @@ let captions = ["Why so sad?",
               ];
 let vælgBillede; 
 let vælgCaption;
+let vælgSound;
 let nyMeme;
 let like;
 let dislike;
@@ -77,10 +79,12 @@ let bottomtext = ["                       XD",
 "BOTTOM TEXT",
 ];
 let gemMeme;
-let deepfry;
+let sound;
 let emojiStop = true;
+let soundAktivation = false;
 
 function preload() {
+  
   for (let i = 0; i < 30; i++) {
     billeder[i] = loadImage("Billder/" + i + ".png");
     billeder[i].resize(400, 400);
@@ -91,12 +95,18 @@ function preload() {
     emoji[e] = loadImage("Emoji/" + "E" + e + ".png");
     // resize, vi gerne have billedet fylder hele skærmen for layout
   }
+
+  for (let s = 0; s < 30; s++) {
+    // lavet til Sounds
+    // sounds[s] = loadSound("Sounds/" + "lyd" + s + "");
+  }
   
   
-  vælgEmoji = floor(random(0, 19));
   vælgCaption = floor(random(0, 30));
   vælgBillede = floor(random(0, 30));
   vælgCaptionButtom = floor(random(0, 30));
+  vælgSound = floor(random(0, 30));
+
   
 
 }
@@ -146,12 +156,21 @@ function setup() {
       saveJSON(data, "MemeGoBRRRRR.json");
     });
 
-    deepfry = createButton("Deepfry");
-    deepfry.style('font-size', '16px');
-    deepfry.style('background-color', 'rgb(70, 229, 166)');
-    deepfry.position(220, 460);
-    deepfry.size(100, 40);
-    deepfry.mousePressed(Deepfry);
+    sound = createButton("Sound");
+    sound.style('font-size', '16px');
+    sound.position(220, 460);
+    sound.size(100, 40);
+    sound.mousePressed(Aktivationsound);
+
+    likeBilled = createImg("Reaktion/like.png", "dislike");
+    likeBilled.position(0,0);
+    likeBilled.size(400,400);
+    likeBilled.hide();
+    dislikeBilled = createImg("Reaktion/dislike.png", "dislike");
+    dislikeBilled.position(0,0);
+    dislikeBilled.size(400,400);
+    dislikeBilled.hide();
+    
 
   }
 
@@ -166,7 +185,7 @@ function setup() {
       text(bottomtext[vælgCaptionButtom], 40, 330, 350);
     }
     EmojiFunktion();
-
+    SoundFunktion();
 
 
     fill(255,0,0);
@@ -182,19 +201,33 @@ function EmojiFunktion() {
   
   if (emojiAktivation == true) {
     if (flereEmojis == true) {
-      for (let å = 0; å < random(1, 5); å++) {
+      for (let å = 0; å < random(0, 3); å++) {
+        vælgEmoji = floor(random(0, 19));
+        image(emoji[vælgEmoji],random(0, 125) , random(100, 275), 50, 50);
+        vælgEmoji = floor(random(0, 19));
+      }
       
-        image(emoji[vælgEmoji],random(10, 390) , random(100, 300), 50, 50);
+      for (let å = 0; å < random(0, 3); å++) {
+        vælgEmoji = floor(random(0, 19));
+        image(emoji[vælgEmoji],random(275, 400) , random(100, 275), 50, 50);
+        vælgEmoji = floor(random(0, 19));
       }
     }
     
-    
     flereEmojis = false;
-
-  }
-  
+  }  
 }
 
+function SoundFunktion() {
+  if (soundAktivation == true && nyMeme.mousePressed()) {
+    if (Sound.isPlaying()){
+    Sound.stop();
+    }
+    else {
+      sounds[vælgSound].play();
+  }
+}
+}
 function Aktivation(){
 
   if (bottomKnapAktivation == false) {
@@ -206,11 +239,24 @@ function Aktivation(){
   }
 }
 
+function Aktivationsound(){
+  
+    if (soundAktivation == false) {
+      soundAktivation = true;
+      sound.style('background-color', 'rgb(70, 229, 166)');
+      Sound();
+    } else if(soundAktivation == true){
+      sound.style('background-color', 'rgb(255, 255, 255)');
+      soundAktivation = false;
+    }
+}
+
 function AktivationEmoji(){
 
   if (emojiAktivation == false) {
     emojiAktivation = true;
     emojiKnap.style('background-color', 'rgb(0, 0, 255)');
+    sound();
   } else if(emojiAktivation == true){
     emojiKnap.style('background-color', 'rgb(255, 255, 255)');
     emojiAktivation = false;
@@ -254,16 +300,19 @@ function opretData() {
   console.log(data);
 }
 
-function Deepfry(){
-
+function Sound(){
+ nyMeme.mousePressed(() => {
+  for (let i = 0; i < 30; i++) {
+    
+    
+  }
+});
   
-  // downscale then upscale the image to create deepfry effect 
-  // https://www.youtube.com/watch?v=QfNvhPx5Px8
-
-  // kig på hvad mikkel har lavet med bottom text
+  
+ 
   
   
 }
 
 // Vi kan lave hvor man selv skriver skrift ind i et felt og så gemmer den det som en caption
-// Deepfry knap
+

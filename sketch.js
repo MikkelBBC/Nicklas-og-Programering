@@ -82,6 +82,10 @@ let gemMeme;
 let sound;
 let emojiStop = true;
 let soundAktivation = false;
+let words = ["hej", "godmorgen", "goddag", "velkommen", "farvel"];
+let lastWord = "";
+let wordCounts = {};
+
 
 function preload() {
   
@@ -101,6 +105,8 @@ function preload() {
     // sounds[s] = loadSound("Sounds/" + "lyd" + s + "");
   }
   
+  LikeBilled = loadImage("Reaktion/like.png");
+  DislikeBilled = loadImage("Reaktion/dislike.png");
   
   vælgCaption = floor(random(0, 30));
   vælgBillede = floor(random(0, 30));
@@ -113,12 +119,17 @@ function preload() {
 
 
 function setup() {
+
+  
     createCanvas(400, 400);
     nyMeme = createButton("New Meme");
     nyMeme.style('font-size', '16px');
     nyMeme.position(20, 420);
     nyMeme.size(100, 40);
     nyMeme.mousePressed(Restart);
+
+ 
+  
 
     bottomKnap = createButton("Bottom text");
     bottomKnap.style('font-size', '16px');
@@ -162,14 +173,7 @@ function setup() {
     sound.size(100, 40);
     sound.mousePressed(Aktivationsound);
 
-    likeBilled = createImg("Reaktion/like.png", "dislike");
-    likeBilled.position(0,0);
-    likeBilled.size(400,400);
-    likeBilled.hide();
-    dislikeBilled = createImg("Reaktion/dislike.png", "dislike");
-    dislikeBilled.position(0,0);
-    dislikeBilled.size(400,400);
-    dislikeBilled.hide();
+   
     
 
   }
@@ -177,6 +181,10 @@ function setup() {
   function draw() {
     background(255);
 
+    
+
+
+    
     image(billeder[vælgBillede],0,0,400,400);
     textSize(30);
     textFont("Impact Light");
@@ -276,17 +284,31 @@ function Restart() {
 function Like() {
   
   
-  
+  image(LikeBilled,50 , 50, 300, 300);
   console.log("Like");
   console.log("Billede nr. = "+vælgBillede);
   console.log("Captions nr. = "+vælgCaption);
-}
+  loadImage("Reaktion/ like.png");
+
+  // chance generator 
+  let randomIndex = floor(random(captions.length));
+  let randomWord = captions[randomIndex];
+  let chanceToRepeat = wordCounts[lastWord] ? wordCounts[lastWord] * 10 : 0;
+  console.log(`Chance to repeat "${lastWord}": ${chanceToRepeat}%`);
+  let repeatWord = random(100) < chanceToRepeat;
+  if (repeatWord) {
+    wordCounts[lastWord] = wordCounts[lastWord] ? wordCounts[lastWord] + 1 : 1;
+  } else {
+    wordCounts[randomWord] = wordCounts[randomWord] ? wordCounts[randomWord] + 1 : 1;
+    lastWord = randomWord;
+  
+}}
 
   // give current picture and caption a dislike and show thumbs up
 function Dislike() {
   
   
-
+  image(DislikeBilled,50 , 50, 300, 300);
   console.log("Dislike");
   console.log("Billede nr. = "+vælgBillede);
   console.log("Captions nr. = "+vælgCaption);

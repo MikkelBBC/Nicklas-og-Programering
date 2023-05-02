@@ -36,7 +36,6 @@ let captions = ["Why so sad?",
                 "hejjjjjjj",
               ];
 
-let vælgCaption;
 let vælgSound;
 let nyMeme;
 let like;
@@ -293,7 +292,7 @@ function AktivationEmoji(){
 
 // gemmer dataen i en json fil så man kan gemme sine memes
 function opretData() {
-  saveCanvas("MemeNavn", "png");
+  saveCanvas("Caption "+currentWord.length+" Picture "+currentWordB, "png");
   data = '{Input: "memename"}';
   data = JSON.parse(data);
   data.Input= memename.value();

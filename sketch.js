@@ -97,7 +97,7 @@ let wordCountsB = {};
 
 function preload() {
   
-  for (let i = 0; i < 30; i++) {
+  for (let i = 0; i < 31; i++) {
     billeder[i] = loadImage("Billder/" + i + ".png");
     billeder[i].resize(400, 400);
     
@@ -194,9 +194,7 @@ function setup() {
   function draw() {
     background(255);
 
-    textSize(32);
-  textAlign(CENTER, CENTER);
-  text(currentWord, width / 2, height / 2);
+    
 
 
     

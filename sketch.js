@@ -82,7 +82,6 @@ let gemMeme;
 let sound;
 let emojiStop = true;
 let soundAktivation = false;
-let words = ["hej", "godmorgen", "goddag", "velkommen", "farvel"];
 let lastWord = "";
 let currentWord = "";
 let wordCounts = {};
@@ -156,7 +155,7 @@ function setup() {
     dislike.style('background-color', 'rgb(255, 0, 0)');
     dislike.position(320, 420);
     dislike.size(100, 40);
-    dislike.mousePressed(Dislike);
+    dislike.mousePressed(decreaseLastWordCount);
 
     emojiKnap = createButton("Emoji");
     emojiKnap.style('font-size', '16px');
@@ -284,23 +283,7 @@ function AktivationEmoji(){
 }
 
  // give current picture and caption a like and show thumbs up
-function Like() {
-  let randomIndex = floor(random(captions.length));
-  let randomWord = captions[randomIndex];
-  let chanceToRepeat = wordCounts[vælgCaption] ? wordCounts[vælgCaption] * procent : 0;
-  console.log(`Chance to repeat "${vælgCaption}": ${chanceToRepeat}%`);
-  let repeatWord = random(100) < chanceToRepeat;
-  if (repeatWord) {
-    wordCounts[vælgCaption] = wordCounts[vælgCaption] ? wordCounts[vælgCaption] + 1 : 1;
-    currentWord = vælgCaption;
-  } else {
-    wordCounts[randomWord] = wordCounts[randomWord] ? wordCounts[randomWord] + 1 : 1;
-    currentWord = randomWord;
-    vælgCaption = randomWord;
-  }
 
-
-}
 
   // give current picture and caption a dislike and show thumbs up
 function Dislike() {
@@ -357,6 +340,13 @@ function chooseRandomWord() {
 function increaseLastWordCount() {
   if (lastWord) {
     wordCounts[lastWord] = wordCounts[lastWord] ? wordCounts[lastWord] + 1 : 1;
+    console.log(`Increased count for "${lastWord}": ${wordCounts[lastWord]}`);
+  }
+}
+
+function decreaseLastWordCount() {
+  if (lastWord) {
+    wordCounts[lastWord] = wordCounts[lastWord] ? wordCounts[lastWord] -1  : -1;
     console.log(`Increased count for "${lastWord}": ${wordCounts[lastWord]}`);
   }
 }

@@ -84,7 +84,9 @@ let emojiStop = true;
 let soundAktivation = false;
 let words = ["hej", "godmorgen", "goddag", "velkommen", "farvel"];
 let lastWord = "";
+let currentWord = "";
 let wordCounts = {};
+let procent = 2.5;
 
 
 function preload() {
@@ -92,12 +94,12 @@ function preload() {
   for (let i = 0; i < 30; i++) {
     billeder[i] = loadImage("Billder/" + i + ".png");
     billeder[i].resize(400, 400);
-    // resize, vi gerne have billedet fylder hele skærmen for layout
+    
   }
 
   for (let e = 0; e < 19; e++) {
     emoji[e] = loadImage("Emoji/" + "E" + e + ".png");
-    // resize, vi gerne have billedet fylder hele skærmen for layout
+   
   }
 
   for (let s = 0; s < 30; s++) {
@@ -117,8 +119,13 @@ function preload() {
 
 }
 
+// gør så at
 
 function setup() {
+
+  
+  
+  chooseRandomWord();
 
   
     createCanvas(400, 400);
@@ -126,7 +133,7 @@ function setup() {
     nyMeme.style('font-size', '16px');
     nyMeme.position(20, 420);
     nyMeme.size(100, 40);
-    nyMeme.mousePressed(Restart);
+    nyMeme.mousePressed(chooseRandomWord);
 
  
   
@@ -142,7 +149,7 @@ function setup() {
     like.style('background-color', 'rgb(0, 250, 0)');
     like.position(220, 420);
     like.size(100, 40);
-    like.mousePressed(Like);
+    like.mousePressed(increaseLastWordCount);
     
     dislike = createButton("Dislike");
     dislike.style('font-size', '16px');
@@ -181,24 +188,29 @@ function setup() {
   function draw() {
     background(255);
 
-    
+    textSize(32);
+  textAlign(CENTER, CENTER);
+  text(currentWord, width / 2, height / 2);
 
 
     
     image(billeder[vælgBillede],0,0,400,400);
     textSize(30);
     textFont("Impact Light");
-    text(captions[vælgCaption], 40, 15, 350);
     if (bottomKnapAktivation == true) {
       text(bottomtext[vælgCaptionButtom], 40, 330, 350);
     }
     EmojiFunktion();
     SoundFunktion();
 
+    textSize(32);
+    text(currentWord,40, 15, 350 );
 
     fill(255,0,0);
   
-    noLoop();
+    
+
+    
     
 }
 
@@ -271,38 +283,24 @@ function AktivationEmoji(){
   }
 }
 
-function Restart() {
-  vælgCaption = floor(random(0, 30));
-  vælgBillede = floor(random(0, 30));
-  vælgCaptionButtom = floor(random(0, 30));
-  vælgEmoji = floor(random(0, 19));
-  flereEmojis = true;
-  loop();
-}
-
  // give current picture and caption a like and show thumbs up
 function Like() {
-  
-  
-  image(LikeBilled,50 , 50, 300, 300);
-  console.log("Like");
-  console.log("Billede nr. = "+vælgBillede);
-  console.log("Captions nr. = "+vælgCaption);
-  loadImage("Reaktion/ like.png");
-
-  // chance generator 
   let randomIndex = floor(random(captions.length));
   let randomWord = captions[randomIndex];
-  let chanceToRepeat = wordCounts[lastWord] ? wordCounts[lastWord] * 10 : 0;
-  console.log(`Chance to repeat "${lastWord}": ${chanceToRepeat}%`);
+  let chanceToRepeat = wordCounts[vælgCaption] ? wordCounts[vælgCaption] * procent : 0;
+  console.log(`Chance to repeat "${vælgCaption}": ${chanceToRepeat}%`);
   let repeatWord = random(100) < chanceToRepeat;
   if (repeatWord) {
-    wordCounts[lastWord] = wordCounts[lastWord] ? wordCounts[lastWord] + 1 : 1;
+    wordCounts[vælgCaption] = wordCounts[vælgCaption] ? wordCounts[vælgCaption] + 1 : 1;
+    currentWord = vælgCaption;
   } else {
     wordCounts[randomWord] = wordCounts[randomWord] ? wordCounts[randomWord] + 1 : 1;
-    lastWord = randomWord;
-  
-}}
+    currentWord = randomWord;
+    vælgCaption = randomWord;
+  }
+
+
+}
 
   // give current picture and caption a dislike and show thumbs up
 function Dislike() {
@@ -334,6 +332,33 @@ function Sound(){
  
   
   
+}
+function chooseRandomWord() {
+  let randomIndex = floor(random(captions.length));
+  let randomWord = captions[randomIndex];
+  let chanceToRepeat = wordCounts[lastWord] ? wordCounts[lastWord] * procent : 0;
+  console.log(`Chance to repeat "${lastWord}": ${chanceToRepeat}%`);
+  let repeatWord = random(100) < chanceToRepeat;
+  if (repeatWord) {
+    wordCounts[lastWord] = wordCounts[lastWord] ? wordCounts[lastWord] + 0 : 0;
+    currentWord = lastWord;
+  } else {
+    wordCounts[randomWord] = wordCounts[randomWord] ? wordCounts[randomWord] + 0 : 0;
+    currentWord = randomWord;
+    lastWord = randomWord;
+  }
+  vælgCaption = floor(random(0, 30));
+  vælgBillede = floor(random(0, 30));
+  vælgCaptionButtom = floor(random(0, 30));
+  vælgEmoji = floor(random(0, 19));
+  flereEmojis = true;
+}
+
+function increaseLastWordCount() {
+  if (lastWord) {
+    wordCounts[lastWord] = wordCounts[lastWord] ? wordCounts[lastWord] + 1 : 1;
+    console.log(`Increased count for "${lastWord}": ${wordCounts[lastWord]}`);
+  }
 }
 
 // Vi kan lave hvor man selv skriver skrift ind i et felt og så gemmer den det som en caption

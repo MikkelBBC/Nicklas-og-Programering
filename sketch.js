@@ -33,6 +33,7 @@ let captions = ["Why so sad?",
                 "When your girlfreind wakes you up but you don't have a girlfreind",
                 "Boy: mom I want to be a doctor, the stage 4 cancer in his brain",
                 "Teacher: Today we're going to finger paint",
+                "hejjjjjjj",
               ];
 
 let vælgCaption;
@@ -116,11 +117,7 @@ function preload() {
   LikeBilled = loadImage("Reaktion/like.png");
   DislikeBilled = loadImage("Reaktion/dislike.png");
   
-  vælgCaption = floor(random(0, 30));
- 
-  vælgCaptionButtom = floor(random(0, 30));
-  vælgSound = floor(random(0, 30));
-
+  
   
 
 }
@@ -293,14 +290,7 @@ function AktivationEmoji(){
 
 
   // give current picture and caption a dislike and show thumbs up
-function Dislike() {
-  
-  
-  image(DislikeBilled,50 , 50, 300, 300);
-  console.log("Dislike");
-  console.log("Billede nr. = "+vælgBillede);
-  console.log("Captions nr. = "+vælgCaption);
-}
+
 // gemmer dataen i en json fil så man kan gemme sine memes
 function opretData() {
   saveCanvas("MemeNavn", "png");

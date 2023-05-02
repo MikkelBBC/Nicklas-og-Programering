@@ -34,7 +34,7 @@ let captions = ["Why so sad?",
                 "Boy: mom I want to be a doctor, the stage 4 cancer in his brain",
                 "Teacher: Today we're going to finger paint",
               ];
-let vælgBillede; 
+
 let vælgCaption;
 let vælgSound;
 let nyMeme;
@@ -85,7 +85,15 @@ let soundAktivation = false;
 let lastWord = "";
 let currentWord = "";
 let wordCounts = {};
-let procent = 10;
+let procent = 2.5;
+let captionsBilleder = ["0",
+"1","2","3","4","5","6","7","8","9","10","11","12","13",
+"14","15","16","17","18","19","20","21","22","23","24","25",
+"26","27","28","29","30"
+              ];
+let lastWordB = "";
+let currentWordB = "";
+let wordCountsB = {};
 
 function preload() {
   
@@ -109,7 +117,7 @@ function preload() {
   DislikeBilled = loadImage("Reaktion/dislike.png");
   
   vælgCaption = floor(random(0, 30));
-  vælgBillede = floor(random(0, 30));
+ 
   vælgCaptionButtom = floor(random(0, 30));
   vælgSound = floor(random(0, 30));
 
@@ -192,7 +200,7 @@ function setup() {
 
 
     
-    image(billeder[vælgBillede],0,0,400,400);
+    image(billeder[currentWordB],0,0,400,400);
     textSize(30);
     textFont("Impact Light");
     if (bottomKnapAktivation == true) {
@@ -331,8 +339,24 @@ function chooseRandomWord() {
     currentWord = randomWord;
     lastWord = randomWord;
   }
+
+  let randomIndexB = floor(random(captionsBilleder.length));
+  let randomWordB = captionsBilleder[randomIndexB];
+  let chanceToRepeatB = wordCountsB[lastWordB] ? wordCountsB[lastWordB] * procent : 0;
+  console.log(`Chance to repeat B "${lastWordB}": ${chanceToRepeatB}%`);
+  let repeatWordB = random(100) < chanceToRepeatB;
+  if (repeatWordB) {
+    wordCountsB[lastWordB] = wordCountsB[lastWordB] ? wordCountsB[lastWordB] + 0 : 0;
+    currentWordB = lastWordB;
+  } else {
+    wordCountsB[randomWordB] = wordCountsB[randomWordB] ? wordCountsB[randomWordB] + 0 : 0;
+    currentWordB = randomWordB;
+    lastWordB = randomWordB;
+  }
+
+  
  
-  vælgBillede = floor(random(0, 30));
+  
   vælgCaptionButtom = floor(random(0, 30));
   vælgEmoji = floor(random(0, 19));
   flereEmojis = true;
@@ -344,12 +368,20 @@ function increaseLastWordCount() {
     wordCounts[lastWord] = wordCounts[lastWord] ? wordCounts[lastWord] + 1 : 1;
     console.log(`Increased count for "${lastWord}": ${wordCounts[lastWord]}`);
   }
+  if (lastWordB) {
+    wordCountsB[lastWordB] = wordCountsB[lastWordB] ? wordCountsB[lastWordB] + 1 : 1;
+    console.log(`Increased count for B "${lastWordB}": ${wordCountsB[lastWordB]}`);
+  }
 }
 
 function decreaseLastWordCount() {
   if (lastWord) {
     wordCounts[lastWord] = wordCounts[lastWord] ? wordCounts[lastWord] -1  : -1;
     console.log(`Increased count for "${lastWord}": ${wordCounts[lastWord]}`);
+  }
+  if (lastWordB) {
+    wordCountsB[lastWordB] = wordCountsB[lastWordB] ? wordCountsB[lastWordB] -1  : -1;
+    console.log(`Increased count for B "${lastWordB}": ${wordCountsB[lastWordB]}`);
   }
 }
 

@@ -85,8 +85,7 @@ let soundAktivation = false;
 let lastWord = "";
 let currentWord = "";
 let wordCounts = {};
-let procent = 2.5;
-
+let procent = 10;
 
 function preload() {
   
@@ -206,6 +205,8 @@ function setup() {
     text(currentWord,40, 15, 350 );
 
     fill(255,0,0);
+
+    
   
     
 
@@ -216,7 +217,7 @@ function setup() {
 
 function EmojiFunktion() {
 
-    
+  
   
   if (emojiAktivation == true) {
     if (flereEmojis == true) {
@@ -330,11 +331,12 @@ function chooseRandomWord() {
     currentWord = randomWord;
     lastWord = randomWord;
   }
-  vælgCaption = floor(random(0, 30));
+ 
   vælgBillede = floor(random(0, 30));
   vælgCaptionButtom = floor(random(0, 30));
   vælgEmoji = floor(random(0, 19));
   flereEmojis = true;
+  
 }
 
 function increaseLastWordCount() {

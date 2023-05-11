@@ -225,13 +225,13 @@ function EmojiFunktion() {
   
   if (emojiAktivation == true) {
     fill(255,0,0);
-    image(emoji[vælgEmoji],Ex , Ey, 50, 50);
+    image(emoji[vælgEmoji],Ex-20 , Ey, 50, 50);
     fill(255,0,0);
-    image(emoji[vælgEmoji],Ex+220, Ey+100, 50, 50);
+    image(emoji[vælgEmoji],Ex+260, Ey+100, 50, 50);
     fill(255,0,0);
-    image(emoji[vælgEmoji],Ex-20, Ey+60, 50, 50);
-    image(emoji[vælgEmoji],Ex+240, Ey+60, 50, 50);
-    image(emoji[vælgEmoji],Ex+240, Ey, 50, 50);
+    image(emoji[vælgEmoji],Ex-40, Ey+60, 50, 50);
+    image(emoji[vælgEmoji],Ex+300, Ey+60, 50, 50);
+    image(emoji[vælgEmoji],Ex+270, Ey, 50, 50);
   }  
 }
 
@@ -340,7 +340,7 @@ function chooseRandomWord() {
   
   
   vælgCaptionButtom = floor(random(0, 30));
-  vælgEmoji = floor(random(0, 19));
+  vælgEmoji = floor(random(0, 20));
   flereEmojis = true;
 
   

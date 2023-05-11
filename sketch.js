@@ -94,6 +94,9 @@ let captionsBilleder = ["0",
 let lastWordB = "";
 let currentWordB = "";
 let wordCountsB = {};
+let Ex = 60;
+let Ey = 180;
+
 
 function preload() {
   
@@ -206,8 +209,7 @@ function setup() {
     textSize(32);
     text(currentWord,40, 15, 350 );
 
-    fill(255,0,0);
-
+    
     
   
     
@@ -222,21 +224,14 @@ function EmojiFunktion() {
   
   
   if (emojiAktivation == true) {
-    if (flereEmojis == true) {
-      for (let å = 0; å < random(0, 3); å++) {
-        vælgEmoji = floor(random(0, 19));
-        image(emoji[vælgEmoji],random(0, 125) , random(100, 275), 50, 50);
-        vælgEmoji = floor(random(0, 19));
-      }
-      
-      for (let å = 0; å < random(0, 3); å++) {
-        vælgEmoji = floor(random(0, 19));
-        image(emoji[vælgEmoji],random(275, 400) , random(100, 275), 50, 50);
-        vælgEmoji = floor(random(0, 19));
-      }
-    }
-    
-    flereEmojis = false;
+    fill(255,0,0);
+    image(emoji[vælgEmoji],Ex , Ey, 50, 50);
+    fill(255,0,0);
+    image(emoji[vælgEmoji],Ex+220, Ey+100, 50, 50);
+    fill(255,0,0);
+    image(emoji[vælgEmoji],Ex-20, Ey+60, 50, 50);
+    image(emoji[vælgEmoji],Ex+240, Ey+60, 50, 50);
+    image(emoji[vælgEmoji],Ex+240, Ey, 50, 50);
   }  
 }
 
@@ -342,11 +337,13 @@ function chooseRandomWord() {
   }
 
   
- 
+  
   
   vælgCaptionButtom = floor(random(0, 30));
   vælgEmoji = floor(random(0, 19));
   flereEmojis = true;
+
+  
   
 }
 
@@ -359,6 +356,7 @@ function increaseLastWordCount() {
     wordCountsB[lastWordB] = wordCountsB[lastWordB] ? wordCountsB[lastWordB] + 1 : 1;
     console.log(`Increased count for B "${lastWordB}": ${wordCountsB[lastWordB]}`);
   }
+  
 }
 
 function decreaseLastWordCount() {
@@ -370,6 +368,8 @@ function decreaseLastWordCount() {
     wordCountsB[lastWordB] = wordCountsB[lastWordB] ? wordCountsB[lastWordB] -1  : -1;
     console.log(`Increased count for B "${lastWordB}": ${wordCountsB[lastWordB]}`);
   }
+
+  
 }
 
 // Vi kan lave hvor man selv skriver skrift ind i et felt og så gemmer den det som en caption

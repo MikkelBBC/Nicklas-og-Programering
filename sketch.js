@@ -33,7 +33,16 @@ let captions = ["Why so sad?",
                 "When your girlfreind wakes you up but you don't have a girlfreind",
                 "Boy: mom I want to be a doctor, the stage 4 cancer in his brain",
                 "Teacher: Today we're going to finger paint",
-                "hejjjjjjj",
+                "When you shit your pants",
+                "When there is no more fortnite",
+                "The doctor when my credit card declines",
+                "My asshole at 3.am ",
+                "My honest reaction to your opinion",
+                "My will to live on monday be like",
+                "Me trying to explain to my mom why i need eat 120 eggs to bulk everyday",
+                "Sir you can't do that, the warcrimes on my penalty test",
+                "Me trying to explain"
+                
               ];
 
 let vælgSound;
@@ -96,11 +105,11 @@ let currentWordB = "";
 let wordCountsB = {};
 let Ex = 60;
 let Ey = 180;
-
+let Længdebilleder = captionsBilleder.length;
 
 function preload() {
   
-  for (let i = 0; i < 31; i++) {
+  for (let i = 0; i < Længdebilleder; i++) {
     billeder[i] = loadImage("Billder/" + i + ".png");
     billeder[i].resize(400, 400);
     
@@ -203,6 +212,7 @@ function setup() {
     if (bottomKnapAktivation == true) {
       text(bottomtext[vælgCaptionButtom], 40, 330, 350);
     }
+    fill(255,0,0);
     EmojiFunktion();
     SoundFunktion();
 
@@ -340,7 +350,7 @@ function chooseRandomWord() {
   
   
   vælgCaptionButtom = floor(random(0, 30));
-  vælgEmoji = floor(random(0, 20));
+  vælgEmoji = floor(random(0, 19));
   flereEmojis = true;
 
   

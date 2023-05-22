@@ -1,4 +1,5 @@
 
+
 let billeder = [];
 let emoji = [];
 let sounds = [];
@@ -44,7 +45,7 @@ let captions = ["Why so sad?",
                 "Me trying to explain"
               ];
 
-let vælgSound;
+let vælgSound = [];
 let nyMeme;
 let like;
 let dislike;
@@ -97,8 +98,7 @@ let procent = 2.5;
 let captionsBilleder = ["0",
 "1","2","3","4","5","6","7","8","9","10","11","12","13",
 "14","15","16","17","18","19","20","21","22","23","24","25",
-"26","27","28","29","30","31","32","33","34","35","36","37",
-"38","39"
+"26","27","28","29","30"
 ];
 let lastWordB = "";
 let currentWordB = "";
@@ -117,40 +117,26 @@ function preload() {
 
   for (let e = 0; e < 19; e++) {
     emoji[e] = loadImage("Emoji/" + "E" + e + ".png");
-   
   }
 
-  for (let s = 0; s < 30; s++) {
-    // lavet til Sounds
-    // sounds[s] = loadSound("Sounds/" + "lyd" + s + "");
+  for (let s = 1; s < 35; s++) {
+    //vælgSound[s] = loadSound("Lyde/" + s + ".mp3");
   }
   
   LikeBilled = loadImage("Reaktion/like.png");
   DislikeBilled = loadImage("Reaktion/dislike.png");
-  
-  
-  
-
 }
-
-// gør så at
 
 function setup() {
 
-  
-  
   chooseRandomWord();
 
-  
     createCanvas(400, 400);
     nyMeme = createButton("New Meme");
     nyMeme.style('font-size', '16px');
     nyMeme.position(20, 420);
     nyMeme.size(100, 40);
     nyMeme.mousePressed(chooseRandomWord);
-
- 
-  
 
     bottomKnap = createButton("Bottom text");
     bottomKnap.style('font-size', '16px');
@@ -193,46 +179,29 @@ function setup() {
     sound.position(220, 460);
     sound.size(100, 40);
     sound.mousePressed(Aktivationsound);
-
-   
-    
-
   }
 
   function draw() {
     background(255);
 
-    
-
-
-    
     image(billeder[currentWordB],0,0,400,400);
     textSize(30);
     textFont("Impact Light");
     if (bottomKnapAktivation == true) {
       text(bottomtext[vælgCaptionButtom], 40, 330, 350);
     }
+
     fill(255,0,0);
     EmojiFunktion();
     SoundFunktion();
 
     textSize(32);
     text(currentWord,40, 15, 350 );
-
-    
-    
-  
-    
-
-    
-    
-}
+  }
 
 
 function EmojiFunktion() {
 
-  
-  
   if (emojiAktivation == true) {
     fill(255,0,0);
     image(emoji[vælgEmoji],Ex-20 , Ey, 50, 50);
@@ -247,13 +216,8 @@ function EmojiFunktion() {
 
 function SoundFunktion() {
   if (soundAktivation == true && nyMeme.mousePressed()) {
-    if (Sound.isPlaying()){
-    Sound.stop();
-    }
-    else {
-      sounds[vælgSound].play();
-  }
-}
+    sounds[vælgSound].play();
+    }    
 }
 function Aktivation(){
 
@@ -271,10 +235,11 @@ function Aktivationsound(){
     if (soundAktivation == false) {
       soundAktivation = true;
       sound.style('background-color', 'rgb(70, 229, 166)');
-      Sound();
+      SoundFunktion();
     } else if(soundAktivation == true){
       sound.style('background-color', 'rgb(255, 255, 255)');
       soundAktivation = false;
+
     }
 }
 
@@ -290,11 +255,6 @@ function AktivationEmoji(){
   }
 }
 
- // give current picture and caption a like and show thumbs up
-
-
-  // give current picture and caption a dislike and show thumbs up
-
 // gemmer dataen i en json fil så man kan gemme sine memes
 function opretData() {
   saveCanvas("Caption "+currentWord.length+" Picture "+currentWordB, "png");
@@ -303,20 +263,7 @@ function opretData() {
   data.Input= memename.value();
   console.log(data);
 }
-
-function Sound(){
- nyMeme.mousePressed(() => {
-  for (let i = 0; i < 30; i++) {
-    
-    
-  }
-});
   
-  
- 
-  
-  
-}
 function chooseRandomWord() {
   let randomIndex = floor(random(captions.length));
   let randomWord = captions[randomIndex];
@@ -346,15 +293,10 @@ function chooseRandomWord() {
     lastWordB = randomWordB;
   }
 
-  
-  
-  
   vælgCaptionButtom = floor(random(0, 30));
   vælgEmoji = floor(random(0, 19));
   flereEmojis = true;
 
-  
-  
 }
 
 function increaseLastWordCount() {
@@ -383,4 +325,3 @@ function decreaseLastWordCount() {
 }
 
 // Vi kan lave hvor man selv skriver skrift ind i et felt og så gemmer den det som en caption
-

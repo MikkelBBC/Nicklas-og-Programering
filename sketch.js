@@ -1,5 +1,5 @@
 
-
+// Globale variabler
 let billeder = [];
 let emoji = [];
 let sounds = [];
@@ -107,6 +107,7 @@ let Ex = 60;
 let Ey = 180;
 let Længdebilleder = captionsBilleder.length;
 
+//
 function preload() {
   
   for (let i = 0; i < Længdebilleder; i++) {

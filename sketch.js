@@ -1,5 +1,3 @@
-
-// Globale variabler
 let billeder = [];
 let emoji = [];
 let sounds = [];
@@ -107,7 +105,6 @@ let Ex = 60;
 let Ey = 180;
 let Længdebilleder = captionsBilleder.length;
 
-//
 function preload() {
   
   for (let i = 0; i < Længdebilleder; i++) {
@@ -240,7 +237,6 @@ function Aktivationsound(){
     } else if(soundAktivation == true){
       sound.style('background-color', 'rgb(255, 255, 255)');
       soundAktivation = false;
-
     }
 }
 
@@ -297,7 +293,6 @@ function chooseRandomWord() {
   vælgCaptionButtom = floor(random(0, 30));
   vælgEmoji = floor(random(0, 19));
   flereEmojis = true;
-
 }
 
 function increaseLastWordCount() {
@@ -309,7 +304,6 @@ function increaseLastWordCount() {
     wordCountsB[lastWordB] = wordCountsB[lastWordB] ? wordCountsB[lastWordB] + 1 : 1;
     console.log(`Increased count for B "${lastWordB}": ${wordCountsB[lastWordB]}`);
   }
-  
 }
 
 function decreaseLastWordCount() {
@@ -321,8 +315,6 @@ function decreaseLastWordCount() {
     wordCountsB[lastWordB] = wordCountsB[lastWordB] ? wordCountsB[lastWordB] -1  : -1;
     console.log(`Increased count for B "${lastWordB}": ${wordCountsB[lastWordB]}`);
   }
-
-  
 }
 
 // Vi kan lave hvor man selv skriver skrift ind i et felt og så gemmer den det som en caption

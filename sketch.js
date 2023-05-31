@@ -316,5 +316,3 @@ function decreaseLastWordCount() {
     console.log(`Increased count for B "${lastWordB}": ${wordCountsB[lastWordB]}`);
   }
 }
-
-// Vi kan lave hvor man selv skriver skrift ind i et felt og så gemmer den det som en caption
